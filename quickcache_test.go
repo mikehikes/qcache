@@ -1,16 +1,15 @@
-package testing
+package quickcache
 
 import (
 	"bytes"
 	"fmt"
 	"log"
-	"quickcache/quickcache"
 	"testing"
 )
 
 // testing if we can create a cache store
 func TestCreateCacheStore(t *testing.T) {
-	qcs, err := quickcache.NewQCStore()
+	qcs, err := NewQCStore()
 
 	if err != nil {
 		log.Println("Error creating cache store:", err)
@@ -30,7 +29,7 @@ func TestCreateAddValuesToCacheStore(t *testing.T) {
 
 	log.Println("Testing the cache store")
 
-	qcs, err := quickcache.NewQCStore()
+	qcs, err := NewQCStore()
 
 	if err != nil {
 		log.Println("Error creating cache store:", err)
@@ -79,7 +78,7 @@ func TestCreateAddValuesToCacheStore(t *testing.T) {
 		return
 	}
 
-	if strVal.Type != quickcache.TYPE_STRING {
+	if strVal.Type != TYPE_STRING {
 		t.Fatalf("Value is not a string")
 		return
 	}
@@ -106,7 +105,7 @@ func TestCreateAddValuesToCacheStore(t *testing.T) {
 		return
 	}
 
-	if byteVal.Type != quickcache.TYPE_BYTES {
+	if byteVal.Type != TYPE_BYTES {
 		t.Fatalf("Value is not a byte array")
 		return
 	}
