@@ -31,6 +31,7 @@ type IQCacheStore interface {
 	GetBytes(key string) ([]byte, error)     // get a byte array value from the cache
 	SetBytes(key string, value []byte) error // set a byte array value in the cache
 	HasKey(key string) (bool, int64, error)  // check if a key exists in the cache
+	DeleteKey(key string) error              // delete a key from the cache
 }
 
 //  The quickcache structure store
@@ -40,10 +41,10 @@ type QCacheStore struct {
 }
 
 // create a new cache store
-func NewQCStore() (QCacheStore, error) {
+func NewQCStore() (*QCacheStore, error) {
 	data := make(map[string]QCacheVal)
 	qcs := QCacheStore{data: data}
-	return qcs, nil
+	return &qcs, nil
 }
 
 // list all keys in the cache (keys are strings)
@@ -121,5 +122,10 @@ func (qcs *QCacheStore) GetBytes(key string) (*QCacheVal, error) {
 func (qcs *QCacheStore) SetBytes(key string, value []byte) error {
 	currentUnixEpoch := int64(time.Now().Unix())
 	qcs.data[key] = QCacheVal{TYPE_BYTES, value, currentUnixEpoch}
+	return nil
+}
+
+func (qcs *QCacheStore) DeleteKey(key string) error {
+	delete(qcs.data, key)
 	return nil
 }
