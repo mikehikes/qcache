@@ -6,7 +6,7 @@ This is a completely unremarkable package that I use for various projects, and h
 
 Unit testing is included to ensure that everything is working 💯 correctly.
 
-There is another package named quickcache at https://github.com/qieguo2016/quickcache - but this package is not related to that repo.
+There is another package named qcache at https://github.com/qieguo2016/quickcache - but this package is not related to that repo.
 
 ## Motivation
 
